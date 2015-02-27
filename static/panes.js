@@ -517,7 +517,9 @@ function PlotPane(id) {
 
   this.element.className += ' window-plot';
   if (!this.element.style.height)
-     this.element.style.height = '200px';
+     this.element.style.height = '400px';
+  if (!this.element.style.width)
+     this.element.style.width = '600px';
   this.content.className += ' content-plot';
 
   // Use undefined initial data to avoid anything being drawn until setContent.

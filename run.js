@@ -7,7 +7,7 @@ function configure(config_path) {
     return JSON.parse(fs.readFileSync(config_path, 'utf8'));
 
   return {
-    port: 8000,
+    port: process.env.PORT || 8000,
   };
 }
 
