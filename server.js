@@ -1,5 +1,6 @@
-// https://github.com/szym/display
+// https://github.com/eliath/display
 // Copyright (c) 2014, Szymon Jakubczak (MIT License)
+// Updated 2015 by Elias Martinez Cohen
 
 var http = require('http')
   , express = require('express')

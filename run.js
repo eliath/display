@@ -6,9 +6,7 @@ function configure(config_path) {
   if (fs.existsSync(config_path))
     return JSON.parse(fs.readFileSync(config_path, 'utf8'));
 
-  return {
-    port: process.env.PORT || 8000,
-  };
+  return {port: process.env.PORT || 8000};
 }
 
 var server = require('./server.js')();
