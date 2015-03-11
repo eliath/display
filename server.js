@@ -1,4 +1,4 @@
-// https://github.com/eliath/display
+// https://github.com/szym/display
 // Copyright (c) 2014, Szymon Jakubczak (MIT License)
 // Updated 2015 by Elias Martinez Cohen
 

@@ -3,16 +3,17 @@
 // https://github.com/szym/display
 // Copyright (c) 2014, Szymon Jakubczak (MIT License)
 // Based on https://github.com/chjj/tty.js by Christopher Jeffrey
+// Updated 2015 by Elias Martinez Cohen (see rPanes.js)
 
 (function() {
 
 ///////////////////
 // Global Elements
 
-var document = this.document
-  , window = this
-  , root
-  , body;
+var document = this.document,
+    window = this, 
+    root,
+    body;
 
 ///////////
 // Helpers
@@ -35,8 +36,7 @@ function cancel(ev) {
 
 function extend(dst, src) {
   for (var k in src)
-    if (src.hasOwnProperty(k))
-      dst[k] = src[k];
+    if (src.hasOwnProperty(k)) dst[k] = src[k];
   return dst;
 }
 
