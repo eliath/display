@@ -12,7 +12,7 @@ function createServer() {
   var app = express();
 
   app.get('/events', function(req, res) {
-    req.socket.setTimeout(Infinity);
+    req.socket.setTimeout(0);
     res.writeHead(200, {
       'Content-Type': 'text/event-stream',
       'Cache-Control': 'no-cache',
@@ -31,6 +31,7 @@ function createServer() {
     req.once('close', function() {
       app.removeListener('update', forwardEvent);
     });
+
   });
 
   app.post('/events', function(req, res, next) {
