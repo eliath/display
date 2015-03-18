@@ -2,6 +2,8 @@
 // 2015 Elias Martinez Cohen
 
 (function() {
+var document = this.document,
+    window = this;
 
 /////////////////
 // HELPERS
@@ -14,19 +16,75 @@ function off(el, type, handler, capture) {
 }
 
 /////////////////
-// PANE CLASS
-var Pane = React.createClass({displayName: "Pane", });
+// PANE MANAGEMENT
+var _panes = {};
 
-// this should be the top portion of the pane
-// it contains controls etc.
-Pane.Bar = React.createClass({displayName: "Bar",  });
-// Pane.Bar.
+
+/////////////////
+// PANE CLASS & COMPONENTS
+
+
+// The bar on the top of the pane that you can drag
+PaneBar = React.createClass({
+	propTypes: {
+        title:      React.PropTypes.string,
+        handleDrag:   React.PropTypes.func,
+        closePane:   React.PropTypes.func
+    }
+
+	handleDrag: function(event) {
+		if (typeof this.props.handleDrag === 'function')
+			return this.props.handleDrag(event);
+	},
+
+	closePane: function() {
+		if (typeof this.props.closePane === 'function') 
+			return this.props.closePane();
+	},
+
+	render: function() {
+		//do what u gotta do
+		return (
+			<div className="pane-bar" onDrag={this.handleDrag} onDoubleClick={this.maximize}>
+				<ul className='controls'>
+					<li onClick={this.closePane}>X</li>
+					<li>—</li>
+				</ul>
+				<p className="title">{this.props.title}</p>
+			</div>
+		);
+	}
+});
+
+
+var Pane = React.createClass({
+	getInitialState: function () {
+	    return {
+	        focused: true,
+	        maximized: false,
+	    };
+	},
+
+	getDefaultProps: function () {
+	    return {
+	        x: 0,
+	        y: 0,
+	        width: 500,
+	        height: 500
+	    };
+	},
+
+	render: function() {
+
+	}
+
+});
 
 
 /////////////////
 // SUB-PANE CLASSES
-var ImagePane = React.createClass({displayName: "ImagePane",  });	
-var PlotPane = React.createClass({displayName: "PlotPane",  });
+var ImagePane = React.createClass({  });	
+var PlotPane = React.createClass({  });
 
 
 

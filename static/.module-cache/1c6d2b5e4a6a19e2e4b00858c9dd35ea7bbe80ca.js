@@ -66,13 +66,12 @@ function connect() {
 }
 
 function load() {
-	var eventSource = connect();
-	//TODO: render status element and make sure on click
-	// it disconnects from eventSource.
 
 	off(document, 'DOMContentLoaded', load);
 }
 
+//////////////////
+// DOCUMENT STARTUP
 on(document, 'DOMContentLoaded', load);
 
 }).call(window);

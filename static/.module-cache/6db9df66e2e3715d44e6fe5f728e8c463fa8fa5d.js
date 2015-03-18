@@ -66,10 +66,7 @@ function connect() {
 }
 
 function load() {
-	var eventSource = connect();
-	//TODO: render status element and make sure on click
-	// it disconnects from eventSource.
-
+	var eventSource
 	off(document, 'DOMContentLoaded', load);
 }
 

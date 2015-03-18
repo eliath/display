@@ -57,22 +57,9 @@ function connect() {
 	});
 
 	on(eventSource, 'message', function(event) {
-		var cmd = JSON.parse(event.data);
-		var command = _commands[cmd.command];
-		if (command) command(cmd);
+		
 	});
-
-	return eventSource;
 }
 
-function load() {
-	var eventSource = connect();
-	//TODO: render status element and make sure on click
-	// it disconnects from eventSource.
-
-	off(document, 'DOMContentLoaded', load);
-}
-
-on(document, 'DOMContentLoaded', load);
 
 }).call(window);

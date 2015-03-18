@@ -11,7 +11,7 @@
 }
 
 html {
-  background: #333;
+  background: #6c777f;
 }
 
 .window {
@@ -66,18 +66,39 @@ button:hover {
   float: left;
 }
 
-#status {
-  padding: 5px;
+#status-btn {
   position: absolute;
-  top: 0;
-  left: 0;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 100%;
+  cursor: pointer;
 }
 
-#status.online {
+#status-bar {
+  position: absolute;
+  top: -20px;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  text-align: center;
+  -webkit-transition: top 200ms ease-in-out;
+  -moz-transition: top 200ms ease-in-out;
+  -ms-transition: top 200ms ease-in-out;
+  -o-transition: top 200ms ease-in-out;
+  transition: top 200ms ease-in-out;
+}
+
+#status-bar.shown {
+  top: 0;
+}
+
+#status-btn.online, #status-bar.online {
   background: #8f8;
 }
 
-#status.offline {
+#status-btn.offline, #status-bar.offline {
   background: #f88;
 }
 

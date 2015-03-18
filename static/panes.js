@@ -567,18 +567,21 @@ var Commands = {
 };
 
 function connect() {
-  var status = document.getElementById('status');
+  var status_btn = document.getElementById('status-btn');
+  var status_bar = document.getElementById('status-bar');
   var eventSource = new EventSource('events');
 
   on(eventSource, 'open', function(event) {
-    status.className = 'online';
-    status.innerHTML = 'online';
+    status_btn.className = 'online';
+    status_bar.innerHTML = 'online';
+    statusAlert(status_bar, 'online');
   });
 
   on(eventSource, 'error', function(event) {
     if (eventSource.readyState == eventSource.CLOSED) {
-      status.className = 'offline';
-      status.innerHTML = 'error';
+      status_btn.className = 'offline';
+      status_bar.innerHTML = 'error';
+      statusAlert(status_bar, 'offline');
     }
   });
 
@@ -591,18 +594,27 @@ function connect() {
   return eventSource;
 }
 
+function statusAlert(status_bar, cname) {
+  status_bar.className = cname + ' shown';
+  window.setTimeout(function(){
+    status_bar.className = cname;
+  }, 2000);
+}
+
 function load() {
   root = document.documentElement;
   body = document.body;
 
-  var status = document.getElementById('status');
+  var status_btn = document.getElementById('status-btn');
+  var status_bar = document.getElementById('status-bar');
   var eventSource = connect();
 
-  on(status, 'click', function(event) {
-    if (status.className == 'online') {
+  on(status_btn, 'click', function(event) {
+    if (status_btn.className == 'online') {
       eventSource.close();
-      status.className = 'offline';
-      status.innerHTML = 'offline';
+      status_btn.className = 'offline';
+      status_bar.innerHTML = 'offline';
+      statusAlert(status_bar, 'offline');
     } else {
       eventSource = connect();
     }

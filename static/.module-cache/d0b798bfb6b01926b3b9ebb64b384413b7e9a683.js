@@ -43,36 +43,5 @@ var _commands = {
 	}
 };
 
-function connect() {
-	var eventSource = new EventSource('events');
-
-	on(eventSource, 'open', function(event) {
-		//TODO: update status element
-	});
-
-	on(eventSource, 'error', function(event) {
-		if (eventSource.readyState == eventSource.CLOSED) {
-			//TODO: update status element
-    	}
-	});
-
-	on(eventSource, 'message', function(event) {
-		var cmd = JSON.parse(event.data);
-		var command = _commands[cmd.command];
-		if (command) command(cmd);
-	});
-
-	return eventSource;
-}
-
-function load() {
-	var eventSource = connect();
-	//TODO: render status element and make sure on click
-	// it disconnects from eventSource.
-
-	off(document, 'DOMContentLoaded', load);
-}
-
-on(document, 'DOMContentLoaded', load);
 
 }).call(window);
